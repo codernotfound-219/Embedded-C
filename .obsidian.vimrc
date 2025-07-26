@@ -8,8 +8,8 @@ exmap back obcommand app:go-back
 nmap ^ :back<CR>
 
 " Go forward
-exmap forward obcommand app:go-forward
-nmap <C-]> :forward<CR>
+" exmap forward obcommand app:go-forward
+" nmap <C-]> :forward<CR>
 
 " Delete current file
 exmap delete obcommand app:delete-file
