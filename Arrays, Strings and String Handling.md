@@ -41,15 +41,29 @@ strcpy(copy, name);
 
 // STRCAT - concatenation
 char sentence[40] = "Hello";
-strcat(sentence, ", World!"); // sentence = "Hello, World!"
+strcat(sentence, ", World!");             // sentence = "Hello, World!"
 
 
 // STRCMP - compare lexicographically
 int result = strcmp("apple", "orange");   // returns a negative value as apple < orange
 
 // STRCHR - finds the first occurence of a character in the string.
-char *ptr = strchr(greeting, 'W'); // return pointer to "World!"
+char *ptr = strchr(greeting, 'W');        // return pointer to "World!"
 
 // STRSTR - finds the first occurence of a substring
-char *substr = str
+char *substr = strstr(greeting, "World"); // Returns pointer to "World!";
 ```
+
+# 3. Literals vs Character Array
+
+- String literals are those that are constant.
+```C
+const char *str = "This is a string literal.";
+```
+
+**Storage**: Memory
+
+# 4. Memory Management
+
+- Each string is a character array with the last character being a null character '\0'; (its a zero not 'o')
+- This character marks the termination of the string and is the reason why C doesn't store the size of the string beforehand.
