@@ -67,3 +67,26 @@ const char *str = "This is a string literal.";
 
 - Each string is a character array with the last character being a null character '\0'; (its a zero not 'o')
 - This character marks the termination of the string and is the reason why C doesn't store the size of the string beforehand.
+
+# 5. Pitfalls
+## 1. Null-Termination
+```C
+char incompleteString[6] = {'H', 'e', 'l', 'l', 'o'}; // string is read beyond memory (missing \0) 
+
+// RIGHT-WAY
+char completeString[6] = {'H', 'e', 'l', 'l', 'o', '\0'}; 
+char completeString[6] = "Hello"; // auto-adds \0
+```
+
+## 2. Buffer Overflow
+```C
+char src[20] = "This is a long string";
+char dest[10];
+
+strcpy(dest, src); // buffer overflow
+```
+fix:
+```C
+strncopy(dest, src, sizeof(dest) - 1)
+dest[sizeof(dest) - 1] = '\0'
+```
