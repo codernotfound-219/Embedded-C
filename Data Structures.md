@@ -140,3 +140,34 @@ int main()
     return 0;
 }
 ```
+- As the address is stored in the same memory, we are able to access it via array and full value as well.
+
+# 4. Bitfield
+```C
+struct struct_name {
+	type member_name : number_of_bits;
+}
+```
+example:
+```C
+typedef struct {
+	uint8_t PIN0 : 1;
+	uint8_t PIN1 : 1;
+	uint8_t PIN2 : 1;
+	uint8_t PIN3 : 1;
+	uint8_t PIN4 : 1;
+	uint8_t PIN5 : 1;
+	uint8_t PIN6 : 1;
+	uint8_t PIN7 : 1;
+} GPIO_pinType;
+
+typedef union {
+	uint8_t reg;      // FullByte Access
+	GPIO_pinType Bit; // Bit level access
+} U_type;
+```
+
+1. Widely used for storing flags, control registers in microcontrollers.
+
+# 5. Typedef
+- Used to create alias
