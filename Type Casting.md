@@ -17,3 +17,19 @@ int32_t intNumber;
 /**< Explicit casting from float to int32_t */
 intNumber = (int32_t) floatNumber;  // Result will be 3, fractional part is lost
 ```
+**Limitations:**
+1. Data Loss:
+```C
+#include <stdio.h>
+
+int main() {
+  float floatNumber = 129.45;
+  int8_t smallvalue;
+  
+  smallvalue = (int8_t) floatNumber;
+  printf("number : %d", smallvalue); // 129 is out-of-bounds. data is corrupted
+  
+  return 0;
+}
+
+```
