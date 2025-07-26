@@ -2,4 +2,6 @@
 2. [[Arrays, Strings and String Handling]]
 3. [[ASCII]]
 4. [[Data Structures]]
-5. [[S]]
+5. [[Standard io]]
+6. [[Pointers]]
+7. [[Type Casting]]
