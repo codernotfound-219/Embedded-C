@@ -88,5 +88,27 @@ strcpy(dest, src); // buffer overflow
 fix:
 ```C
 strncopy(dest, src, sizeof(dest) - 1)
-dest[sizeof(dest) - 1] = '\0'
+dest[sizeof(dest) - 1] = '\0';   // manually set null-termination
+```
+
+## 3. Dynamic Strings
+```C
+char *dynamicstring = malloc(50 * sizeof(char));
+
+if (dynamicstring != NULL) {
+	strcpy(dynamicstring, "Dynamically allocated string.");
+	printf("%s\n", dynamicstring);
+	
+	free(dynamicstring); // have to manually free the memory
+}
+```
+
+
+# EXAMPLES: printing a str by character
+
+```C
+char str[] = "Hello";
+for (int i = 0; str[i] != '\0'; i++) {
+	printf("Character: %c\n", str[i]);
+}
 ```

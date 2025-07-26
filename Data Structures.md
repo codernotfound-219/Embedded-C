@@ -1,0 +1,142 @@
+# 1. Enum
+Syntax
+```C
+enum enum_name {
+	value_1 = x,
+	value_2 = y,
+	value_3 = z,
+	...
+};
+```
+Example
+```C
+#include <stdio.h>
+
+enum LEDState {
+	OFF = 0,
+	ON = 1,
+	BLINK = 2
+};
+```
+**Benefits**:
+1. Type-safety
+2. Maintenance
+3. Readability
+
+# 2. Struct
+Syntax
+```C
+struct struct_name {
+	type member1;
+	type member2;
+	type member3;
+	...
+};
+```
+Example:
+```C
+struct SensorData {
+	float temperature;
+	float humidity;
+	int sensorID;
+}
+
+int main() {
+	struct SensorData mySensor;
+	...
+}
+```
+**Benefits**:
+1. organization
+2. readability
+3. data handling
+
+BETTER WAY:
+```C
+typdef struct {
+	float temperature;
+	float humidity;
+	int sensorID;
+} SensorData;
+
+int main() {
+	SensorData mySensor; // No need to type out struct everywhere
+}
+```
+
+# 3. Union
+Syntax
+```C
+union union_name {
+	type member1;
+	type member2;
+	type member3;
+	...
+};
+```
+Example:
+```C
+union Data {
+	int i;
+	float f;
+	char str[20];
+};
+
+int main() 
+{
+    union Data data; /**< Declare a variable of type union Data */
+    
+    /* Assign an integer value to the union */
+    data.i = 10; /**< Store an integer in the union */
+    printf("Integer: %d\n", data.i);
+    
+    /* Assign a float value to the union (overwrites the previous data) */
+    data.f = 3.14; /**< Store a float in the union */
+    printf("Float: %.2f\n", data.f);
+    
+    /* Assign a string value to the union (overwrites the previous data) */
+    snprintf(data.str, sizeof(data.str), "Hello, World!"); /**< Store a string in the union */
+    printf("String: %s\n", data.str);
+    
+    return 0;
+}
+```
+
+1. In a union all members share the same memory location. Writing to a member means overwriting the previously stored value.
+2. Initially data was 10, it was overwritten to 3.14 and then overwritten to "Hello, World!"
+
+**Benefits**:
+1. Efficient memory usage
+2. Flexible data storage
+3. Mainly useful when a variable can be represented in multiple formats.
+
+# Example: 32-bit integer to 4 8-bit bytes using Union
+```C
+#include <stdio.h>
+#include <stdint.h>
+
+/* Defining a union to convert a 32-bit unsigned integer to four 8-bit unsigned integers */
+union Converter 
+{
+    uint32_t fullValue; /**< 32-bit unsigned integer */
+    uint8_t byte[4]; /**< Array of 4 bytes (uint8_t) */
+};
+
+int main() 
+{
+    union Converter converter; /**< Declare a variable of type union Converter */
+    
+    /* Assign a 32-bit value to the union */
+    converter.fullValue = 0x12345678; /**< Example 32-bit value */
+    
+    printf("32-bit value: 0x%X\n", converter.fullValue); /**< Print the full 32-bit value */
+    
+    /* Print the 4 bytes */
+    printf("Byte 1: 0x%X\n", converter.byte[0]); /**< Output: 0x78 */
+    printf("Byte 2: 0x%X\n", converter.byte[1]); /**< Output: 0x56 */
+    printf("Byte 3: 0x%X\n", converter.byte[2]); /**< Output: 0x34 */
+    printf("Byte 4: 0x%X\n", converter.byte[3]); /**< Output: 0x12 */
+    
+    return 0;
+}
+```
