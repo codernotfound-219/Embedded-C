@@ -39,10 +39,10 @@ struct SensorData {
 	float temperature;
 	float humidity;
 	int sensorID;
-}
+};
 
 int main() {
-	struct SensorData mySensor;
+	struct SensorData mySensor = {.temperature = 4.25, .humidity = 2.34, .sensorID = 12};
 	...
 }
 ```
